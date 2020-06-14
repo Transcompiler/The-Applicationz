@@ -7,6 +7,7 @@ namespace The_Cryptocoin_Miner
         static void Main(string[] args)
         {
             Console.WriteLine("Hello World!");
+            //
         }
     }
 }
