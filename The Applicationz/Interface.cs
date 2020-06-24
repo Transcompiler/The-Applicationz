@@ -25,7 +25,22 @@
 
     }
 
+    interface IResource : IData
+    {
+
+    }
+
+    interface IRemovable : IResource
+    {
+
+    }
+
     interface IWonder : IBuildable
+    {
+
+    }
+
+    interface IResearchable : IData
     {
 
     }

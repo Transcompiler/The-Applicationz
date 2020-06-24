@@ -1,4 +1,6 @@
-﻿namespace The_Statesman
+﻿using System;
+
+namespace The_Statesman
 {
 
 
@@ -77,12 +79,42 @@
         public int Infantry { get => infantry; set => infantry = value; }
     }
 
-    class Maps : IMaps
+    class Resource : IResource
     {
-        public static void makeMap()
+        public void makeResource()
         {
 
         }
+
+        public void useResource()
+        {
+
+        }
+    }
+
+    class Tech : IResearchable
+    {
+
+    }
+
+    class SocialLaw : IResearchable
+    {
+
+    }
+
+    class Maps : IMaps
+    {
+        Maps()
+        {
+            makeMap();
+        }
+
+        public void makeMap()
+        {
+            //Console.WriteLine(Resource.ToString());
+        }
+
+        //public void
     }
 
     class Wonder : IWonder
