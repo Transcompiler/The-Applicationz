@@ -2,13 +2,12 @@
 
 namespace The_Statesman
 {
-
-
+    [Serializable]
     class Data : IData
     {
-        //몰려드는 폭풍 데이터
-        string[] cataclysm = new string[] { "폭풍", "가뭄", "화산 폭발", "홍수", "산불" };
-        int CO2;
+        //몰려드는 폭풍 확장팩 데이터
+        string[] cataclysm = new string[] { "폭풍", "가뭄", "화산 폭발", "홍수", "산불" }; //재난
+        int CO2; //이산화탄소
 
         //흥망성쇠 확장팩 데이터
         private static int eraScore = 100; //시대 점수
@@ -37,15 +36,15 @@ namespace The_Statesman
         int faithPerTurn; //턴당 종교 점수
         int food; //도합 식량
         int foodPerTurn; //턴당 식량
+        int gold; //보유 현금
+        int goldPerTurn; //턴당 수입
         int production; //도합 생산력
         int productionPerTurn; //턴당 생산력
         int numberOfCity; //도시 갯수
         int pioneers; //개척자
-        string[] difficult = new string[] { "개척자", "족장", "장군", "왕자", "왕", "황제", "불멸자", "신" };
-        string[] amenity = new string[] { "황홀함", "행복함", "만족함", "불만족함", "불행함", "불안정함", "폭동" };
-        int tanks;
-        int infantry;
-        //int 
+        string[] difficult = new string[] { "개척자", "족장", "장군", "왕자", "왕", "황제", "불멸자", "신" }; //난이도
+        string[] amenityList = new string[] { "황홀함", "행복함", "만족함", "불만족함", "불행함", "불안정함", "폭동" }; //전역 쾌적도
+        string realDifficult = ""; //실제 난이도
 
         //외교 관련 데이터
         int warmongerPenalty; //전쟁광 페널티
@@ -74,9 +73,10 @@ namespace The_Statesman
         public int WarmongerPenalty { get => warmongerPenalty; set => warmongerPenalty = value; }
         public int Pioneers { get => pioneers; set => pioneers = value; }
         public string[] Difficult { get => difficult; set => difficult = value; }
-        public string[] Amenity { get => amenity; set => amenity = value; }
-        public int Tanks { get => tanks; set => tanks = value; }
-        public int Infantry { get => infantry; set => infantry = value; }
+        public string[] AmenityList { get => amenityList; set => amenityList = value; }
+        public int Gold { get => gold; set => gold = value; }
+        public int GoldPerTurn { get => goldPerTurn; set => goldPerTurn = value; }
+        public string RealDifficult { get => realDifficult; set => realDifficult = value; }
     }
 
     class Resource : IResource
@@ -92,14 +92,29 @@ namespace The_Statesman
         }
     }
 
-    class Tech : IResearchable
+    class MilitaryResource : Resource
     {
 
     }
 
-    class SocialLaw : IResearchable
+    class BonusResource : Resource
     {
 
+    }
+
+    class LuxuryResource : Resource
+    {
+
+    }
+
+    class Tech : IResearchable
+    {
+        string[] bigtech = { "", "", "" };
+    }
+
+    class Civic : IResearchable
+    {
+        string[] bigcivic = { };
     }
 
     class Maps : IMaps
@@ -119,13 +134,59 @@ namespace The_Statesman
 
     class Wonder : IWonder
     {
+        int BonusScience;
+        int BonusCulture;
+        int BonusFaith;
+        int BonusGold;
+        int BonusFood;
+        int BonusAmenity;
+        int BonusProd;
+
         public Wonder()
         {
-
+            PlayerData data = new PlayerData();
+            data.GoldPerTurn = data.GoldPerTurn + BonusGold;
+            data.SciencePerTurn = data.SciencePerTurn + BonusScience;
+            data.FaithPerTurn = data.FaithPerTurn + BonusFaith;
+            data.FoodPerTurn = data.FoodPerTurn + BonusFood;
+            data.CulturePerTurn = data.CulturePerTurn + BonusCulture;
+            data.GoldPerTurn = data.GoldPerTurn + BonusAmenity;
         }
     }
 
+    class MilitaryUnit : IMilitaryUnit
+    {
+
+    }
+
     class Building : IBuildable
+    {
+
+    }
+
+    [Serializable]
+    class PlayerData : Data
+    {
+        public bool NewPlayer;
+
+        public PlayerData()
+        {
+            NewPlayer = true;
+        }
+    }
+
+    [Serializable]
+    class PlayerTech : Tech
+    {
+
+    }
+
+    class PlayerCivic : Civic
+    {
+
+    }
+
+    class AIData : Data
     {
 
     }

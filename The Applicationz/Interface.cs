@@ -40,6 +40,23 @@
 
     }
 
+    interface IUnit : IData
+    {
+        void SpawnUnit()
+        {
+        }
+    }
+
+    interface IMilitaryUnit : IUnit
+    {
+
+    }
+
+    interface INonMillUnit : IUnit
+    {
+
+    }
+
     interface IResearchable : IData
     {
 
