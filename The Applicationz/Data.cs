@@ -1,9 +1,10 @@
 ﻿using System;
+using System.Linq;
 
 namespace The_Statesman
 {
     [Serializable]
-    class Data : IData
+    class Data : Resource, IData
     {
         //몰려드는 폭풍 확장팩 데이터
         string[] cataclysm = new string[] { "폭풍", "가뭄", "화산 폭발", "홍수", "산불" }; //재난
@@ -25,6 +26,8 @@ namespace The_Statesman
          * 3. 영화 스튜디오(관광 x2)
          * 4. ??
          */
+
+        //내정 관련 데이터
         string[] cityName;
         string nationName;
         bool tech; //현재 시대(기술적 분류)
@@ -45,6 +48,10 @@ namespace The_Statesman
         string[] difficult = new string[] { "개척자", "족장", "장군", "왕자", "왕", "황제", "불멸자", "신" }; //난이도
         string[] amenityList = new string[] { "황홀함", "행복함", "만족함", "불만족함", "불행함", "불안정함", "폭동" }; //전역 쾌적도
         string realDifficult = ""; //실제 난이도
+        Wonder[] wonders = { };
+
+        //군사 관련 데이터
+        int MilitaryPower;
 
         //외교 관련 데이터
         int warmongerPenalty; //전쟁광 페널티
@@ -77,6 +84,7 @@ namespace The_Statesman
         public int Gold { get => gold; set => gold = value; }
         public int GoldPerTurn { get => goldPerTurn; set => goldPerTurn = value; }
         public string RealDifficult { get => realDifficult; set => realDifficult = value; }
+        public int MilitaryPower1 { get => MilitaryPower; set => MilitaryPower = value; }
     }
 
     class Resource : IResource
@@ -90,21 +98,6 @@ namespace The_Statesman
         {
 
         }
-    }
-
-    class MilitaryResource : Resource
-    {
-
-    }
-
-    class BonusResource : Resource
-    {
-
-    }
-
-    class LuxuryResource : Resource
-    {
-
     }
 
     class Tech : IResearchable
@@ -134,6 +127,7 @@ namespace The_Statesman
 
     class Wonder : IWonder
     {
+        string WonderName;
         int BonusScience;
         int BonusCulture;
         int BonusFaith;
@@ -141,22 +135,105 @@ namespace The_Statesman
         int BonusFood;
         int BonusAmenity;
         int BonusProd;
+        static string[] WonderList = { "알렉산드리아 도서관","스톤헨지","옥스포드 대학",""};
+        string[] AvailableWL = WonderList;
 
-        public Wonder()
+        public Wonder(string name)
         {
+            WonderName = name;
             PlayerData data = new PlayerData();
-            data.GoldPerTurn = data.GoldPerTurn + BonusGold;
-            data.SciencePerTurn = data.SciencePerTurn + BonusScience;
-            data.FaithPerTurn = data.FaithPerTurn + BonusFaith;
-            data.FoodPerTurn = data.FoodPerTurn + BonusFood;
-            data.CulturePerTurn = data.CulturePerTurn + BonusCulture;
-            data.GoldPerTurn = data.GoldPerTurn + BonusAmenity;
+            
+        }
+
+        public bool start(Wonder wdr)
+        {
+            switch(wdr.WonderName)
+            {
+                case "알렉산드리아 도서관":
+                    if (checkAvailable() == false) goto default;
+                    break;
+                case "스톤헨지":
+                    if (checkAvailable() == false) goto default;
+                    break;
+                case "옥스포드 대학":
+                    if (checkAvailable() == false) goto default;
+                    break;
+                default:
+                    //이미 지어지거나, 없는 불가사의
+                    return false;
+            }
+            return true;            
+        }
+
+        bool  checkAvailable()
+        {
+            return true;
+        }
+
+        void complete(Wonder wdr)
+        {
+            MainClass.pd.GoldPerTurn = MainClass.pd.GoldPerTurn + BonusGold;
+            MainClass.pd.SciencePerTurn = MainClass.pd.SciencePerTurn + BonusScience;
+            MainClass.pd.FaithPerTurn = MainClass.pd.FaithPerTurn + BonusFaith;
+            MainClass.pd.FoodPerTurn = MainClass.pd.FoodPerTurn + BonusFood;
+            MainClass.pd.CulturePerTurn = MainClass.pd.CulturePerTurn + BonusCulture;
+            MainClass.pd.GoldPerTurn = MainClass.pd.GoldPerTurn + BonusAmenity;
         }
     }
 
     class MilitaryUnit : IMilitaryUnit
     {
 
+    }
+
+    class HeavyCavalry : MilitaryUnit
+    {
+        void start(string name)
+        {
+            switch(name)
+            {
+                //중기병부터 시작;
+                case "중전차":
+                    break;
+                case "기사":
+                    break;
+                case "흉갑 기병":
+                    break;
+                case "탱크":
+                    break;
+                case "현대 전차":
+                    break;
+                default:
+                    break;                            
+            } 
+        }
+        void complete(HeavyCavalry mu)
+        {
+        }
+    }
+
+    class LightCavalry : MilitaryUnit
+    {
+        void start(string name)
+        {
+            switch (name)
+            {
+                //다음은 경기병;
+                case "기마병":
+                    break;
+                case "군마":
+                    break;
+                case "기병대":
+                    break;
+                case "탱크":
+                    break;
+                case "헬기":
+                    break;
+                default:
+                    Console.WriteLine("잘못된 이름입니다.");
+                    break;
+            }
+        }
     }
 
     class Building : IBuildable

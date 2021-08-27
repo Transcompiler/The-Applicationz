@@ -37,7 +37,14 @@ namespace The_Statesman
                     break;
                 case "MIL":
                     Line();
-                    Console.WriteLine("");
+                    Console.WriteLine("현재 대략적 군사력: {0}", MainClass.pd.MilitaryPower1);
+                    Console.WriteLine("어떤 병력을 생산할까요? (육군/해군/공군, 약자로 G/N/A)");
+                    string key = Console
+                        .ReadKey()
+                        .KeyChar
+                        .ToString()
+                        .ToUpper(); //뭐야 이거
+
                     Line();
                     break;
                 case "DP":
@@ -79,8 +86,8 @@ namespace The_Statesman
                     break;
                 case "OFF":
                     return "OFF";
-                    Wonder wonder = new Wonder();
-                    fn.completeWonder(wonder);
+                    Wonder wonder = new Wonder("알렉산드리아 도서관");
+                    wonder.start(wonder);
                     break;
                 default:
                     Console.WriteLine("올바른 명령이 아닙니다.");
@@ -90,22 +97,33 @@ namespace The_Statesman
             return "NORMAL"
 ; }
 
-        public void completeWonder(Wonder wdr)
-        {
-            string a = wdr.ToString();
-        }
+        
 
         public void completeCity()
         {
-
+            
         }
         public static void Line()
         {
             Console.WriteLine("-------------------");
         }
-
         public static void Era()
         {
+        }
+
+        static void GroundForce()
+        {
+
+        }
+
+        static void Navy()
+        {
+
+        }
+
+        static void AirForce()
+        {
+
         }
     }
 

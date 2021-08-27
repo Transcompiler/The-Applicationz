@@ -5,7 +5,14 @@ VisualStudioVersion = 16.0.30011.22
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "The Statesman", "The Applicationz\The Statesman.csproj", "{27D31A84-42E3-4FE2-8FA5-606EBBB41C6A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "The Cryptocoin Miner", "The Cryptocoin Miner\The Cryptocoin Miner.csproj", "{364A0742-B7A2-459A-ACD3-6D2CD271BAE8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "The Cryptocoin Miner", "The Cryptocoin Miner\The Cryptocoin Miner.csproj", "{364A0742-B7A2-459A-ACD3-6D2CD271BAE8}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Simulate", "Simulate\Simulate.csproj", "{42646138-96A0-40F5-B248-AB5B7FA875E4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{892AB1C9-519F-4933-BFF1-54F3E19452C9}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +28,10 @@ Global
 		{364A0742-B7A2-459A-ACD3-6D2CD271BAE8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{364A0742-B7A2-459A-ACD3-6D2CD271BAE8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{364A0742-B7A2-459A-ACD3-6D2CD271BAE8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{42646138-96A0-40F5-B248-AB5B7FA875E4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{42646138-96A0-40F5-B248-AB5B7FA875E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{42646138-96A0-40F5-B248-AB5B7FA875E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{42646138-96A0-40F5-B248-AB5B7FA875E4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
